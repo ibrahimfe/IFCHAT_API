@@ -22,7 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // For Users
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/id/{id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
+Route::put('/user/id/{id}', [UserController::class, 'update']);
+Route::delete('/users/id/{id}', [UserController::class, 'destroy']);
 
 // For Messages
 Route::get('/messages', [MessageController::class, 'index']);

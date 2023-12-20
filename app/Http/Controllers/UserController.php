@@ -29,11 +29,12 @@ class UserController extends Controller
         $validate_data = $request->validate([
             'username' => 'required',
             'password' => 'required',
-            'name' => 'string'
+            'name' => 'string',
+            'photoUrl' => 'string'
         ]);
 
-        $validate_Data['created_at'] = Carbon::now('Asia/Jakarta');
-        $validate_Data['updated_at'] = Carbon::now('Asia/Jakarta');
+        $validate_data['created_at'] = Carbon::now('Asia/Jakarta');
+        $validate_data['updated_at'] = Carbon::now('Asia/Jakarta');
 
 
 
@@ -50,7 +51,17 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = UserChat::find($id);
+
+        if(!$data) {
+            return response() -> json([
+                'message' => 'User Not Found'
+            ], 404);
+        }
+        return response() -> json([
+            'message' => 'User is Found!!',
+            'data' => $data
+        ], 200);
     }
 
     /**
@@ -58,7 +69,29 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validate_data = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+            'name' => 'string',
+            'photoUrl' => 'string'
+        ]);
+
+        $data = UserChat::find($id);
+
+        if(!$data) {
+            return response() -> json([
+                'message' => 'User Not Found'
+            ], 404);
+        }
+
+        $validate_data['updated_at'] = Carbon::now('Asia/Jakarta');
+
+        $data->update($validate_data);
+
+        return response() -> json([
+            'message' => 'User Updated Succesfully',
+            'data' => $data
+        ], 200);
     }
 
     /**
@@ -66,6 +99,18 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = UserChat::find($id);
+
+        if(!$data) {
+            return response() -> json([
+                'message' => 'User not Found'
+            ], 404);
+        }
+
+        $data->delete();
+
+        return response() -> json([
+            'message' => "User Deleted Succesfully"
+        ], 200);
     }
 }
