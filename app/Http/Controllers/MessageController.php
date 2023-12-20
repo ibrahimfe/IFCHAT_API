@@ -25,7 +25,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate_data = $request->validate([
+            'name' => 'required',
+            'photoUrl' => 'string',
+            'text' => 'required|string'
+        ]);
+
+        $data = Messages::create($validate_data);
+
+        return response() -> json([
+            'message' => 'New Message Created Succesfully',
+            'data' => $data
+        ], 201);
     }
 
     /**

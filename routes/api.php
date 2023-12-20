@@ -26,3 +26,4 @@ Route::post('/users', [UserController::class, 'store']);
 
 // For Messages
 Route::get('/messages', [MessageController::class, 'index']);
+Route::post('/messages', [MessageController::class, 'store']);
