@@ -23,8 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // For Users
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/id/{id}', [UserController::class, 'show']);
+Route::get('/users/username/{username}', [UserController::class, 'show1']);
 Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/id/{id}', [UserController::class, 'update']);
+Route::put('/users/username/{username}', [UserController::class, 'update']);
 Route::delete('/users/id/{id}', [UserController::class, 'destroy']);
 
 // For Messages

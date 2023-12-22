@@ -64,6 +64,22 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function show1(string $username)
+    {
+        $data = UserChat::where('username', $username)->first();
+
+        if (!$data) {
+            return response()->json([
+                'message' => 'User Not Found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'User is Found!!',
+            'data' => $data
+        ], 200);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -114,3 +130,4 @@ class UserController extends Controller
         ], 200);
     }
 }
+    
