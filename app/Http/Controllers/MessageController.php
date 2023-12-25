@@ -14,7 +14,7 @@ class MessageController extends Controller
     {
         $data = Messages::orderBy('id', 'asc')->get();
 
-        return response() -> json([
+        return response()->json([
             'message' => 'List Of All Messages',
             'data' => $data
         ], 200);
@@ -33,7 +33,7 @@ class MessageController extends Controller
 
         $data = Messages::create($validate_data);
 
-        return response() -> json([
+        return response()->json([
             'message' => 'New Message Created Succesfully',
             'data' => $data
         ], 201);

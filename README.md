@@ -7,60 +7,105 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# IFChat API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://www.php.net/releases/8_1_0.php)
+[![Laravel Version](https://img.shields.io/badge/laravel-%5E10.0-red.svg)](https://laravel.com/docs/10.x)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Table of Contents
 
-## Learning Laravel
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Provide well made Landing Page in **'/'** path
+- Manage Users data for IFchat Application in **'/api/users/'** path
+- Manage Messages data for IFchat Application **'/api/messages/'** path
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Requirements
 
-## Laravel Sponsors
+- PHP >= 8.1
+- Composer
+- Laravel >= 10.0
+- Other dependencies in composer.json
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
+1. Clone the repository:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   ```bash
+   git clone https://github.com/your-username/your-repository.git
+   ```
+2. Change into project directory
+    ```bash
+    cd IFCHAT_API
+    ```
+3. install dependencies
+    ```bash
+    composer install
+    ```
+4. Copy the '.env.example' file and configure your environment variables
+    ```bash
+    cp .env.example .env
+    ```
+5. Generate Application Key
+    ```bash
+    php artisan key:generate
+    ```
+6. Run Migration
+    ```bash
+    php artisan migrate
+    ```
 
-## Contributing
+## Configuration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To configure laravel API, follow these steps:
 
-## Code of Conduct
+- Open the **'.env'** file and set the database connection details.
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=your_database
+    DB_USERNAME=your_username
+    DB_PASSWORD=your_password
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Usage
 
-## Security Vulnerabilities
+To use this laravel API in your localhost, follow these steps:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Ensure that your database is set up and configured correctly
+2. Run the laravel development server
+    ```bash
+    php artisan serve
+    ```
+3. Visit the [Landing Page](http://localhost:8000/)
+4. Explore the **/api/users** and **/api/messages** endpoints for user and message-related functionalities.
+
+## Endpoints
+
+**'/api/users/'**
+- **GET /api/users** : Retrive a list of users
+- **GET /api/users/username/{username}** : Retrive details of spesific username
+- **POST /api/users** : Create a new user
+- **PUT /api/users/username/{username}** : Update information for spesific username
+- **DELETE /api/users/username/{username}** : Delete a user
+
+**'/api/messages'**
+- **GET /api/messages** : Retrieve a list of messages
+- **POST /api/messages/** : Create new messages
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This Project is licensed under the MIT License - see the [License](LICENSE) file for details.
