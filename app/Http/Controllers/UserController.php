@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $user = UserChat::orderBy('id', 'asc')->get();
 
-        return response() -> json([
+        return response()->json([
             'message' => 'List of All Users',
             'data' => $user,
         ], 200);
@@ -36,14 +36,18 @@ class UserController extends Controller
         $validate_data['created_at'] = Carbon::now('Asia/Jakarta');
         $validate_data['updated_at'] = Carbon::now('Asia/Jakarta');
 
+        try {
+            $data = UserChat::create($validate_data);
 
-
-        $data = UserChat::create($validate_data);
-
-        return response() -> json([
-            'message' => 'Succesfully Created New User',
-            'data' => $data,
-        ], 201);
+            return response()->json([
+                'message' => 'Succesfully Created New User',
+                'data' => $data,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to create a new User'
+            ], 500);
+        }
     }
 
     /**
@@ -51,33 +55,45 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $data = UserChat::find($id);
+        try {
+            $data = UserChat::find($id);
 
-        if(!$data) {
-            return response() -> json([
-                'message' => 'User Not Found'
-            ], 404);
+            if (!$data) {
+                return response()->json([
+                    'message' => 'User Not Found'
+                ], 404);
+            }
+            return response()->json([
+                'message' => 'User is Found!!',
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to Show User'
+            ], 500);
         }
-        return response() -> json([
-            'message' => 'User is Found!!',
-            'data' => $data
-        ], 200);
     }
 
     public function show1(string $username)
     {
-        $data = UserChat::where('username', $username)->first();
+        try {
+            $data = UserChat::where('username', $username)->first();
 
-        if (!$data) {
+            if (!$data) {
+                return response()->json([
+                    'message' => 'User Not Found'
+                ], 404);
+            }
+
             return response()->json([
-                'message' => 'User Not Found'
-            ], 404);
+                'message' => 'User is Found!!',
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to Show User'
+            ], 500);
         }
-
-        return response()->json([
-            'message' => 'User is Found!!',
-            'data' => $data
-        ], 200);
     }
 
     /**
@@ -94,8 +110,8 @@ class UserController extends Controller
 
         $data = UserChat::find($id);
 
-        if(!$data) {
-            return response() -> json([
+        if (!$data) {
+            return response()->json([
                 'message' => 'User Not Found'
             ], 404);
         }
@@ -104,7 +120,7 @@ class UserController extends Controller
 
         $data->update($validate_data);
 
-        return response() -> json([
+        return response()->json([
             'message' => 'User Updated Succesfully',
             'data' => $data
         ], 200);
@@ -117,17 +133,16 @@ class UserController extends Controller
     {
         $data = UserChat::find($id);
 
-        if(!$data) {
-            return response() -> json([
+        if (!$data) {
+            return response()->json([
                 'message' => 'User not Found'
             ], 404);
         }
 
         $data->delete();
 
-        return response() -> json([
+        return response()->json([
             'message' => "User Deleted Succesfully"
         ], 200);
     }
 }
-    

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Messages;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MessageController extends Controller
 {
@@ -28,15 +29,24 @@ class MessageController extends Controller
         $validate_data = $request->validate([
             'name' => 'required',
             'photoUrl' => 'string',
-            'text' => 'required|string'
+            'text' => 'required'
         ]);
+        $validate_data['created_at'] = Carbon::now('Asia/Jakarta');
+        $validate_data['updated_at'] = Carbon::now('Asia/Jakarta');
 
-        $data = Messages::create($validate_data);
+        try {
+            $data = Messages::create($validate_data);
 
-        return response()->json([
-            'message' => 'New Message Created Succesfully',
-            'data' => $data
-        ], 201);
+            return response()->json([
+                'message' => 'New Message Created Successfully',
+                'data' => $data
+            ], 201);
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'error' => 'Failed to create a new message'
+            ], 500);
+        }
     }
 
     /**

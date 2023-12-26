@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('photoUrl');
+            $table->string('photoUrl')->nullable();
             $table->text('text');
             $table->timestamps();
         });
