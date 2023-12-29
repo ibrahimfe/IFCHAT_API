@@ -9,6 +9,21 @@
 
 # IFChat API
 
+## Disusun Oleh
+
+1. Nur Ali Arfan (3337210033)
+2. Ibrahim (3337220054)
+3. Salsabila Firdausiah Ramadani (3337220017)
+4. Nasywa Putri Khairunnisaa (3337220044)
+5. Hanny Destian Marzuliyanti (3337220057)
+6. Farrah Safira (3337220079)
+7. Julkifli (33337210026)
+8. Firmansyah Sutan Wahyu Prakosa (3337210030)
+9. Ageng Parikesit Sugiana (3337210005)
+10. Mohamad Restu Zikri Novdian (3337210007)
+11. Fatwaraga Rafsanjani (3337210031)
+12. Mochammad ahnaf hilmi zahran (3337210020)
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://www.php.net/releases/8_1_0.php)
 [![Laravel Version](https://img.shields.io/badge/laravel-%5E10.0-red.svg)](https://laravel.com/docs/10.x)
